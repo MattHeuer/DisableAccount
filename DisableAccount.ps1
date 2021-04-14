@@ -26,8 +26,8 @@ $Notes = "Disabled $Today $RITM $Admin"
 $ContextServer = Get-ADDomain | Select-Object -ExpandProperty forest
 
 if ($ContextServer -eq 'dhw.wa.gov.au') {
-    $InfoPath = # Insert Info export path here as a TXT file #
-    $MemberPath = # Insert Membership export path here as a CSV file #
+    $InfoPath = #Path of the Info export#\$RITM-$SAM-UserInfo-$Date.txt
+    $MemberPath = #Path of the Member export#\$RITM-$SAM-GroupMembership-$Date.csv"
 } else {
     $InfoPath = "C:\temp\MHeuer\Exports\$RITM-$SAM-UserInfo-$Date.txt"
     $MemberPath = "C:\temp\MHeuer\Exports\$RITM-$SAM-GroupMembership-$Date.csv"
