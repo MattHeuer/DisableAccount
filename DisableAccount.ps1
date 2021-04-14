@@ -48,17 +48,17 @@ if ($INFO = (Get-ADUser -Identity $USER -Properties info).info) {
 
 Disable-ADAccount -Identity $USER
 $GUID = Get-ADUser -Identity $USER | Select-Object -ExpandProperty ObjectGUID
-if ($ContextServer -eq 'dhw.wa.gov.au') {
-    Move-ADObject -Identity $GUID -TargetPath "OU=Disabled_Users,DC=dhw,DC=wa,DC=gov,DC=au"
-} elseif ($ContextServer -eq 'ad.dcd.wa.gov.au') {
-    Move-ADObject -Identity $GUID -TargetPath 'OU=Disabled Users,OU=Core Infrastructure,DC=ad,DC=dcd,DC=wa,DC=gov,DC=au'
-} elseif ($ContextServer -eq 'PreProd.com.au') {
-    Move-ADObject -Identity $GUID -TargetPath 'OU=DisabledUsers,DC=PreProd,DC=com,DC=au'
-} elseif ($ContextServer -eq 'test.dcd.wa.gov.au') {
-    Move-ADObject -Identity $GUID -TargetPath 'OU=Disabled Users,OU=Core Infrastructure,DC=TEST,DC=DCD,DC=WA,DC=GOV,DC=AU'
-} elseif ($ContextServer -eq 'dsc.wa.gov.au') {
-    Move-ADObject -Identity $GUID -TargetPath 'OU=Disabled Accounts,OU=Inactive Accounts,DC=dsc,DC=wa,DC=gov,DC=au'
-} elseif ($ContextServer -eq 'dcptrn.local') {
+if ($ContextServer -eq '#HousingServer#') {
+    Move-ADObject -Identity $GUID -TargetPath "#Housing Disabled Users OU#"
+} elseif ($ContextServer -eq '#CPFSServer#') {
+    Move-ADObject -Identity $GUID -TargetPath '#CPFS Disabled Users OU#'
+} elseif ($ContextServer -eq '#PreProdServer#') {
+    Move-ADObject -Identity $GUID -TargetPath '#PREPROD Disabled Users OU#'
+} elseif ($ContextServer -eq '#TESTServer#') {
+    Move-ADObject -Identity $GUID -TargetPath '#TEST Disabled Users OU#'
+} elseif ($ContextServer -eq '#DSCServer#') {
+    Move-ADObject -Identity $GUID -TargetPath '#DSC Disabled Users OU#'
+} elseif ($ContextServer -eq '#TRAININGServer#') {
     Continue
 } else {
     Write-Host "Domain not recognised" -ForegroundColor Red -ErrorAction Stop
